@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ >_head }}
+
+<body>
+	<div class="container">
+		<div class="align-items-center">
+			<div class="row mt-4">
+				{{#content.training}}
+				<div class="lead pb-2 col-md-6 col-sm-12 text-right">Rezervace na <span class="px-1 rounded"
+						style="color: {{content.training.color}}; background-color: {{content.training.bgColor}};"><b>{{
+							content.training.name }}</b></span>
+				</div>
+				{{/content.training}}
+				{{^content.training}}
+				<div class="lead pb-2 col-md-6 col-sm-12 text-right text-danger ">
+					<span>TRÉNINK NENALEZEN</span>
+				</div>
+				{{/content.training}}
+
+				<div class="small pb-2 col-md-6 col-sm-12 text-md-end text-sm-start">
+					<span><a class="btn btn-sm btn-primary" href="/">Zpět na přehled tréninků</a></span>
+				</div>
+			</div>
+			{{#content.training}}
+
+			<div class="row text-center my-5">
+				<div class="col-md-4">
+					<ul class="list-group shadow">
+						<li class="list-group-item fs-4 fw-bold bg-light">Konání</li>
+						<li class="list-group-item fs-5">{{ content.training.date }} v {{ content.training.hour }}</li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<ul class="list-group shadow">
+						<li class="list-group-item fs-4 fw-bold bg-light">Obsazenost <span class="text-secondary">(náhr.)</span></li>
+						<li class="list-group-item fs-5">{{{ content.training.mem }}} <span class="text-secondary">({{{ content.training.sub }}})</span></li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<ul class="list-group shadow">
+						<li class="list-group-item fs-4 fw-bold bg-light">Poznámka</li>
+						<li class="list-group-item fs-5">
+							{{#content.training.remark}}
+								{{content.training.remark}}
+							{{/content.training.remark}}
+							{{^content.training.remark}}
+							-
+							{{/content.training.remark}}
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="row text-center mt-5">
+				{{#content.freeSpace}}
+					<div class="alert alert-secondary" role="alert">
+                	    Není potřeba vyplnit všechny účastníky anebo náhradníky. Pokud vyplníte všechna pole, zarezervujete všechna místa tréninku.
+                	</div>
+				{{/content.freeSpace}}
+				{{^content.freeSpace}}
+					<div class="alert alert-warning" role="alert">
+                	    Na tréninku již není žádné volné místo.
+                	</div>
+				{{/content.freeSpace}}
+            </div>
+				{{#content.freeSpace}}
+				<form method="post" action="/reservation/{{content.params.id}}/make">
+					<div class="row text-center my-4 py-3 border rounded">
+						<div class="col-md-6">
+							<caption class="d-block"><span class="fw-bold">Účastníci</span></caption>
+							{{#content.inputs.mem}}
+  								{{{ . }}}
+								<!-- <input type="text" name="ucastnik" class="form-control mb-3" placeholder="Účastník"> -->
+    						{{/content.inputs.mem}}
+						</div>
+						<div class="col-md-6">
+							<caption class="d-block"><span class="fw-bold">Náhradníci</span></caption>
+							{{#content.inputs.sub}}
+								{{{ . }}}
+  								<!-- <input type="text" name="nahradnik" class="form-control mb-3" placeholder="Náhradník"> -->
+    						{{/content.inputs.sub}}
+						</div>
+						<div class="col-md-12 mt-4">
+							<label> Váš e-mail <span class="text-danger">*</span>
+								<input type="email" name="res_email" class="form-control mb-3" required>
+							</label>
+							<input type="hidden" name="uuid" value="{{content.params.uuid}}">
+							
+						</div>
+						<div class="col-md-12">
+							<button class="btn btn-success" type="confirm">Odeslat rezervaci</button>
+						</div>
+					</div>
+				</form>
+				{{/content.freeSpace}}
+				{{^content.freeSpace}}
+				{{/content.freeSpace}}
+		{{/content.training}}
+		{{^content.training}}
+		{{/content.training}}
+		</div>
+	</div>
+</body>
+</html>

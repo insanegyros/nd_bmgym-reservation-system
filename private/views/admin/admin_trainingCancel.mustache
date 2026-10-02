@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ >_head }}
+
+<body>
+    <div class="container">
+        <div class="align-items-center">
+            <div class="row mt-4">
+                <div class="lead pb-2 col-md-6 col-sm-12 text-right">
+                    Smazání tréninku <span class="text-secondary">{{ content.params.id }}</span></span>
+                </div>
+                <div class="pb-2 col-md-6 col-sm-12 text-md-end text-sm-start">
+                    <a class="btn btn-sm btn-secondary" href="/admin/"><i class="bi bi-door-closed"></i> Zpět na
+                        panel správce</a>
+                </div>
+            </div>
+            {{#content.cancelled}}
+            <div class="row text-center mt-5">
+                <div class="col-12">
+                    <div class="alert alert-success" role="alert">
+                        Trénink byl úspěšně smazán.
+                    </div>
+                    <div class="col-12">
+                    </div>
+                    {{/content.cancelled}}
+                    {{^content.cancelled}}
+                    <div class="row text-center mt-5">
+                        <div class="col-12">
+                            <div class="alert alert-warning" role="alert">
+                                Trénink se nepodařilo smazat.
+                            </div>
+                        </div>
+                    </div>
+                    {{/content.cancelled}}
+                </div>
+            </div>
+</body>
+
+</html>

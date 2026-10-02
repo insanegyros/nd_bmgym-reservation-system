@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ >_head }}
+
+<body>
+    <div class="container">
+		<div class="align-items-center">
+			<div class="row mt-4">
+				<div class="lead pb-2 col-md-6 col-sm-12 text-right">
+                    Rezervace <span class="text-secondary">{{ content.reservation.uuid }}</span></span>
+				</div>
+				<div class="small pb-2 col-md-6 col-sm-12 text-md-end text-sm-start">
+					<span><a class="btn btn-sm btn-primary" href="/reservation/{{ content.params.id }}">Zpět na detail rezervace</a></span>
+				</div>
+			</div>
+			{{#content.reservation.success}}
+            	<div class="row text-center mt-5">
+					<div class="col-12">
+            	    	<div class="alert alert-success" role="alert">
+            	    	    Vaše rezervace byla úspěšně vytvořena. <strong>Na e-mail Vám byl zaslán potvrzovací odkaz.</strong> <br>
+            	    	    <span class="text-danger fw-bold">!!!</span> Bez potvrzení nebude rezervace platná. <span class="text-danger fw-bold">!!!</span>
+            	    	</div>
+					</div>
+            	</div>
+
+			<!-- <div class="row text-center mt-5 p-2 border rounded">
+                    <div class="col-md-6">
+						<caption class="d-block"><span class="fw-bold">Účastníci</span></caption>
+						{{content.reservation.pocU}}
+						<input type="text" value="Jarda Novák" class="form-control mb-3" disabled readonly>
+                        <input type="text" value="Pepa Vondráček" class="form-control mb-3" disabled readonly>
+					</div>
+                    <div class="col-md-6">
+						<caption class="d-block"><span class="fw-bold">Náhradníci</span></caption>
+						{{content.reservation.pocN}}
+						<input type="text" value="Martin Okatý" class="form-control mb-3" disabled readonly>
+					</div>
+			</div>
+
+			<form method="post" action="">
+				<div class="row text-center p-2 border rounded">
+					<div class="col-md-6">
+						<caption class="d-block"><span class="fw-bold">Účastníci</span></caption>
+						<input type="text" name="ucastnik" class="form-control mb-3" placeholder="Účastník">
+						<input type="text" name="ucastnik" class="form-control mb-3" placeholder="Účastník">
+					</div>
+
+					<div class="col-md-6">
+						<caption class="d-block"><span class="fw-bold">Náhradníci</span></caption>
+						<input type="text" name="nahradnik" class="form-control mb-3" placeholder="Náhradník">
+						<input type="text" name="nahradnik" class="form-control mb-3" placeholder="Náhradník">
+					</div>
+
+					<div class="col-md-2 mt-5">
+						<label> Váš e-mail <span class="text-danger">*</span>
+							<input type="email" name="res_email" class="form-control mb-3"
+								placeholder="franta@vomacka.cz" required>
+						</label>
+						<button class="btn btn-success" type="confirm">Odeslat rezervaci</button>
+					</div>
+				</div>
+			</form> -->
+			{{/content.reservation.success}}
+			{{^content.reservation.success}} 
+                <div class="row text-center mt-5">
+                    <div class="col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <b>Rezervace se nezdařila.</b> Zkontrolujte si prosím, že jste vyplnil(a) všechna povinná pole a na tréninku je stále volné místo.
+                        </div>
+                    </div>
+                </div>
+			{{/content.reservation.success}}
+		</div>
+	</div>
+</body>
+</html> 

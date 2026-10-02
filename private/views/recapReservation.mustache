@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ >_head }}
+
+<body>
+	<div class="container">
+		<div class="align-items-center">
+
+			<div class="row mt-4">
+				<div class="lead pb-2 col-md-6 col-sm-12 text-right">
+					Rekapitulace rezervace <span class="text-secondary">{{ content.params.uuid }}</span></span>
+				</div>
+			{{#content.success}}
+				<div class="lead pb-2 col-md-6 col-sm-12 text-md-end text-sm-start">
+					<span class="px-1 rounded"
+						style="color: {{content.training.color}}; background-color: {{content.training.bgColor}};"><b>{{
+							content.training.name }}</b></span>
+					<span>({{ content.training.date }})</span>
+				</div>
+			</div>
+
+			<div class="row text-center mt-5">
+				<div class="alert alert-secondary" role="alert">
+					Červeně zvýrazněná políčka značí zrušenou rezervaci.
+				</div>
+			</div>
+
+			<div class="row text-center my-4 py-3 border rounded">
+				<div class="col-md-6">
+					<caption class="d-block"><span class="fw-bold">Účastníci</span></caption>
+					{{#content.mem}}
+						{{{ . }}}
+					{{/content.mem}}
+					<!-- <input type="text" value="" class="form-control mb-3" disabled readonly> -->
+				</div>
+				<div class="col-md-6">
+					<caption class="d-block"><span class="fw-bold">Náhradníci</span></caption>
+					{{#content.sub}}
+						{{{ . }}}
+					{{/content.sub}}
+					<!-- <input type="text" value="" class="form-control mb-3" disabled readonly> -->
+				</div>
+				<div class="col-md-12 mt-4">
+					<button class="btn btn-danger" onclick="confirmModal.modal('show');">Zrušit rezervaci</button>
+				</div>
+
+			</div>
+			{{/content.success}}
+
+			{{^content.success}}
+				<div class="row text-center mt-5">
+					<div class="alert alert-warning" role="alert">
+						Rezervace nenalezena. Byla vytvořená k tréninku, který je neplatný, již proběhl a nebo byl zrušen.
+					</div>
+				</div>
+			{{/content.success}}
+
+
+
+
+		</div>
+	</div>
+
+	<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModal"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title fw-bold">Opravdu si přejete zrušit celou rezervaci?</h5>
+				</div>
+				<div class="modal-body">
+					<p class="text-danger fw-bold">
+						Zrušení rezervace je nevratné!
+					</p>
+					<p class="text-secondary">
+						V případě změny je potřeba si vytvořit novou rezervaci.
+					</p>
+				</div>
+				<div class="modal-footer">
+					<form method="post" action="/recap/reservation/{{ content.params.uuid }}/cancel">
+						<button class="btn btn-danger" type="confirm">Ano, zrušit</button>
+					</form>
+					<button type="button" class="btn btn-secondary" onclick="confirmModal.modal('hide')">Ne</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const confirmModal = $("#confirmModal");
+	</script>
+</body>
+
+</html>

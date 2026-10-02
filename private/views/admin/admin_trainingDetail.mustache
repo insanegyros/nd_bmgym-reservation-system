@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ >_head }}
+
+<body>
+	<div class="container">
+		<!-- Header row -->
+		<div class="row mt-4 align-items-center">
+			<div class="pb-2 col-md-6 col-sm-12">
+				<!-- <a class="btn btn-sm btn-success" href="/training/add"><i class="bi bi-plus-circle"></i> Přidat trénink(y)</a>-->
+			</div>
+			<div class="pb-2 col-md-6 col-sm-12 text-md-end text-sm-start">
+				<a class="btn btn-sm btn-secondary" href="/admin/"><i class="bi bi-door-closed"></i> Zpět do
+					administrace</a>
+			</div>
+		</div>
+
+		<!-- Two columns with lists -->
+		<div class="row">
+			<div class="col-md-6">
+				<form method="post" action="/admin/training/{{content.params.id}}/edit">
+					<div class="form-floating mb-1">
+						<input type="text" name="trainingName" value="{{content.training.name}}" class="form-control">
+						<label for="trainingName">Název</label>
+					</div>
+
+					<div class="form-floating mb-1">
+						<input type="date" name="trainingDate" value="{{content.training.date}}" class="form-control">
+						<label for="trainingDate">Datum</label>
+					</div>
+
+					<div class="form-floating mb-1">
+						<input type="hour" name="trainingHour" value="{{content.training.time}}" class="form-control">
+						<label for="trainingName">Hodina</label>
+					</div>
+
+					<div class="form-floating mb-1">
+						<input type="color" name="trainingColor" value="{{content.training.color}}"
+							class="form-control">
+						<label for="trainingColor">Barva textu</label>
+					</div>
+
+					<div class="form-floating mb-1">
+						<input type="color" name="trainingBgColor" value="{{content.training.bgColor}}"
+							class="form-control">
+						<label for="trainingBgColor">Barva zvýraznění</label>
+					</div>
+
+					<div class="form-floating mb-1">
+						<input type="text" name="trainingRemark" value="{{content.training.remark}}"
+							class="form-control">
+						<label for="trainingRemark">Poznámka</label>
+					</div>
+
+					</ul>
+					<button class="btn btn-primary w-100 mt-2">
+						<i class="bi bi-pencil-square"></i> Uložit změny
+					</button>
+				</form>
+				<button class="btn btn-danger w-100 mt-2 mb-4" onclick="deleteModal.modal('show');">
+					<i class="bi bi-trash"></i> Smazat trénink
+				</button>
+			</div>
+			<div class="col-md-6">
+				<table class="table">
+					<tr>
+						<th>Jméno</th>
+						<th>E-mail</th>
+						<th>Typ</th>
+						<th>Stav</th>
+						<th>Akce</th>
+					</tr>
+					{{#content.reservation}}
+					{{{ . }}}
+					{{/content.reservation}}
+					<!--<tr>
+						<td>Test Jarda</td>
+						<td>jarda@lol.kys</td>
+						<td><span class=text-primary>ÚČASTNÍK</span></td>
+						<td><span class="text-warning">NEPOTVRZENÁ</span></td>
+						<td>
+							<button class="btn btn-primary" onclick="actionModal.modal('show');"><i class="bi bi-pencil"></i></button>
+						</td>
+					</tr>
+					<tr class="table-danger">
+						<td>Test Lolda</td>
+						<td>lolda@lol.kys</td>
+						<td><span class=text-secondary>NÁHRADNÍK</span></td>
+						<td><span class="text-success">POTVRZENÁ</span></td>
+						<td>
+							<button class="btn btn-primary" onclick="actionModal.modal('show');"><i class="bi bi-pencil"></i></button>
+						</td>
+					</tr>-->
+				</table>
+				<hr>
+				<p class="small">
+					<span class="fw-bold">LEGENDA</span>:<br>
+					<!-- <span class="text-secondary">Řazení: účastníci > náhradníci > zrušené rezervace</span><br> -->
+					<span class="px-1" style="background-color: #f8d7da;">Zvýrazněné pole</span> - Rezervace byla zrušená<br>
+					<span class="text-success"><i class="bi bi-check-lg"></i></span> - Rezervace je vytvořená a
+					potvrzená<br>
+					<span class="text-danger"><i class="bi bi-x-lg"></i></span> - Rezervace je vytvořená, ale ještě není
+					potvrzená<br>
+					<span class="text-primary"><i class="bi bi-person-fill"></i></span> - Účastník<br>
+					<span class="text-secondary"><i class="bi bi-person-plus-fill"></i></span> - Náhradník<br>
+				</p>
+			</div>
+		</div>
+
+		<div class="row mt-3">
+			<div class="col-12">
+
+			</div>
+		</div>
+	</div>
+
+	{{ >_footer }}
+
+	<!-- onclick="deleteModal.modal('show');" -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title fw-bold">Opravdu chcete smazat trénink?</h5>
+				</div>
+				<div class="modal-body">
+					<p class="text-danger fw-bold">
+						Smazání tréninku je nevratné.
+					</p>
+					<p class="text-secondary">
+						V případě smazání bude potřeba vytvořit trénink nový.
+					</p>
+				</div>
+				<div class="modal-footer">
+					<form method="post" action="/admin/training/{{content.params.id}}/delete">
+						<button class="btn btn-danger" type="confirm">Ano, smazat</button>
+					</form>
+					<button type="button" class="btn btn-secondary" onclick="deleteModal.modal('hide');">Ne</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- onclick="actionModal.modal('show');" -->
+	<div class="modal fade" id="actionModal" tabindex="-1" role="dialog" aria-labelledby="actionModal"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title fw-bold">Editovat rezervaci <span id="editName" class="fw-bolder"></span></h5>
+				</div>
+				<div class="modal-body">
+					<form method="post" action="/admin/training/{{content.params.id}}/reservation/edit">
+						<input type="hidden" name="rId" id="rId">
+						<input type="hidden" name="tId" id="tId">
+						<!-- <button class="btn btn-primary">Změnit jméno</button>-->
+						<div>
+							<input type="submit" name="toggleType" class="btn btn-info w-50 mb-2" value="Přepnout typ">
+							<span class="w-50">Přepínač <b>náhradník/účastník</b></span>
+						</div>
+						<div>
+							<input type="submit" name="cancelReservation" class="btn btn-danger w-50 mb-2" value="Zrušit rezervaci">
+							<span class="w-50"><b>Nevratně</b> zruší rezervaci</span>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" onclick="actionModal.modal('hide')">Zavřít</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const deleteModal = $("#deleteModal");
+		const actionModal = $("#actionModal");
+		hydrateActionModal = (btn, rid, tid) => {
+			$("#editName").text($(btn).closest('tr').find('td:first').text().trim())
+			$("#rId").val(rid)
+			$("#tId").val(tid)
+		}
+	</script>
+
+</html>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ >_head }}
+    <!DOCTYPE html>
+<html lang="en">
+{{ >_head }}
+
+<body>
+	<div class="container">
+		<div class="align-items-center">
+			<div class="col">
+				<div class="row mt-4">
+					<div class="pb-2 col-md-6 col-sm-12 text-right">
+						<a class="btn btn-sm btn-secondary" href="/training/add"><i class="bi bi-arrow-left"></i> Zpět na formulář</a>
+					</div>
+
+					<div class="pb-2 col-md-6 col-sm-12 text-md-end text-sm-start">
+						<a class="btn btn-sm btn-secondary" href="/admin/"><i class="bi bi-house"></i> Zpět do administrace</a>
+					</div>
+				</div>
+				
+
+				{{#content.success}}
+            	    <div class="row text-center mt-5">
+            	        <div class="col-12">
+            	            <div class="alert alert-success" role="alert">
+            	                Trénink(y) úspěšně přidán(y)
+            	            </div>
+						</div>
+            	    </div>
+					<div class="text-left">
+						<ul>
+							{{#content.addedTrainings}}
+								<li>{{ . }}</li>
+							{{/content.addedTrainings}}
+						</ul>
+					</div>
+				{{/content.success}}
+				{{^content.success}} 
+            	    <div class="row text-center mt-5">
+            	        <div class="col-12">
+            	            <div class="alert alert-warning" role="alert">
+            	                Trénink(y) se nepodařilo přidat
+            	            </div>
+            	        </div>
+            	    </div>
+				{{/content.success}}
+			</div>
+		</div>
+	</div>
+	{{ >_footer }}
+
+</html>
+</html>
+
+

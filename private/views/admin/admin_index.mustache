@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ >_head }}
+<!DOCTYPE html>
+<html lang="en">
+{{ >_head }}
+
+<body>
+	<div class="container">
+		<div class="align-items-center">
+			<div class="col">
+				<div class="row mt-4 align-items-center g-2">
+					<!-- Left button -->
+					<div class="pb-2 col-12 col-md-auto">
+						<a class="btn btn-sm btn-success" href="/admin/training/add">
+							<i class="bi bi-plus-circle"></i> Přidat trénink(y)
+						</a>
+					</div>
+
+					<!-- Search bar (middle) -->
+					<div class="pb-2 col-8 col-md">
+						<input class="form-control form-control-sm me-2" type="search" id="searchq" placeholder="Hledání" aria-label="Hledat">	
+					</div>
+
+					<!-- Right button -->
+					<div class="pb-2 col-12 col-md-auto text-md-end">
+						<a class="btn btn-sm btn-secondary" href="/admin/logout">
+							<i class="bi bi-door-closed"></i> Odhlásit
+						</a>
+					</div>
+				</div>
+				<table class="table text-center">
+					<thead>
+						<tr>
+							<th>Trénink</th>
+							<th>Datum</th>
+							<th>Hodina</th>
+							<th>Obsazenost</th>
+							<th>Akce</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#content.trainings}}
+						<tr>
+							<td style="color: {{color}}; background-color: {{bgColor}};"><b>{{name}}</b></td>
+							<td> {{date}} </td>
+							<td> {{hour}} </td>
+							<td> {{{ppl}}} </td>
+							<td>
+								<a class="btn btn-sm btn-primary" href="/admin/training/{{id}}">
+									<i class="bi bi-search"></i> Detail</a>
+							</td>
+						</tr>
+						{{/content.trainings}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	{{ >_footer }}
+
+</html>
+
+</html>

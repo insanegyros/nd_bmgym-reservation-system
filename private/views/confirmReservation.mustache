@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ >_head }}
+
+<body>
+    <div class="container">
+		<div class="align-items-center">
+			<div class="row mt-4">
+				<div class="lead pb-2 col-md-6 col-sm-12 text-right">
+                    Potvrzení rezervace <span class="text-secondary">{{ content.params.uuid }}</span></span>
+				</div>
+			</div>
+			{{#content.confirmed}}
+                <div class="row text-center mt-5">
+                    <div class="col-12">
+                        <div class="alert alert-success" role="alert">
+                            Rezervace byla úspěšně potvrzena.
+                        </div>
+                    </div>
+                </div>
+			{{/content.confirmed}}
+			{{^content.confirmed}} 
+                <div class="row text-center mt-5">
+                    <div class="col-12">
+                        <div class="alert alert-warning" role="alert">
+                            Vaše rezervace nebyla potvrzena. Pokud jste tuto rezervaci již potvrdil(a), nelze ji potvrdit znovu.
+                        </div>
+                    </div>
+                </div>
+			{{/content.confirmed}}
+		</div>
+	</div>
+</body>
+</html> 

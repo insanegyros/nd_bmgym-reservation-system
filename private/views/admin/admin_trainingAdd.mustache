@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+{{ >_head }}
+
+<body>
+	<div class="container">
+		<div class="align-items-center">
+			<div class="col">
+				<div class="row mt-4">
+					<div class="pb-2 col-md-6 col-sm-12 text-right">
+						<!-- <a class="btn btn-sm btn-success" href="/training/add"><i class="bi bi-plus-circle"></i> Přidat trénink(y)</a> -->
+					</div>
+
+					<div class="pb-2 col-md-6 col-sm-12 text-md-end text-sm-start">
+						<a class="btn btn-sm btn-secondary" href="/admin/"><i class="bi bi-door-closed"></i> Zpět do administrace</a>
+					</div>
+				</div>
+				<div class="row">
+					<form method="post" action="/admin/training/add/submit">
+						<label class="col-12 pb-3"> Opakování <span class="text-secondary">(přidá trénink ve stejný den na [opakování] týdnů)</span>:
+							<span class="text-danger">*</span>
+							<input type="number" inputmode="numeric" name="repeat" class="form-control" value="1" required>
+						</label>
+						<label class="col-12 pb-3"> Počáteční datum:
+							<span class="text-danger">*</span>
+							<input type="date" name="date" class="form-control" required>
+						</label>
+						<label class="col-12 pb-3"> Hodina:
+							<span class="text-danger">*</span>
+							<input type="time" name="hour" class="form-control" required>
+						</label>
+						<label class="col-12 pb-3"> Název:
+							<span class="text-danger">*</span>
+							<input type="text" name="name" class="form-control" required>
+						</label>
+						<div class="row pb-3">
+							<label class="col-6"> Maximum účastníků:
+								<span class="text-danger">*</span>
+								<input type="number" inputmode="numeric" name="maxmem" class="form-control" required>
+							</label>
+							<label class="col-6"> Maximum náhradníků:
+								<span class="text-danger">*</span>
+								<input type="number" inputmode="numeric" name="maxsub" class="form-control" required>
+							</label>
+						</div>
+						<div class="row pb-3">
+							<label class="col-6"> Barva textu <span class="text-secondary">(názvu tréninku)</span>:
+								<input type="color" name="color" class="form-control" value="#ffffff">
+							</label>
+							<label class="col-6"> Barva zvýraznění <span class="text-secondary">(názvu tréninku)</span>:
+								<input type="color" name="bgColor" class="form-control">
+							</label>
+						</div>
+						<label class="col-12 pb-3"> Poznámka:
+							<textarea name="remark" class="form-control"></textarea>
+						</label>
+						<div class="col-12 pb-3">
+							<button type="submit" class="btn btn-success">Přidat trénink(y)</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{ >_footer }}
+
+</html>
+</html>
+
+

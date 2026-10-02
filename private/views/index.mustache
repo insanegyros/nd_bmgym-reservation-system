@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ >_head }}
+
+<body>
+	<div class="container">
+		<div class="align-items-center">
+			<div class="col">
+				<div class="row mt-4">
+					<div class="lead pb-2 col-md-6 col-sm-12 text-right">Dnes je {{content.today}}</div>
+					<div class="small pb-2 col-md-6 col-sm-12 text-md-end text-sm-start">
+						<!-- <span><a class="btn btn-sm btn-info" href="/prehled">Moje rezervace</a></span> -->
+					</div>
+				</div>
+				<table class="table text-center">
+					<thead>
+						<tr>
+							<th>Datum</th>
+							<th>Hodina</th>
+							<th>Trénink</th>
+							<th>Obsazenost</th>
+							<th>Akce</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#content.trainings}}
+						<tr>
+							<td> {{ day }} {{date}} <i>({{relativeDay}})</i> </td>
+							<td> {{hour}} </td>
+							<td style="color: {{color}}; background-color: {{bgColor}};"><b>{{name}}</b></td>
+							<td> {{{ppl}}} </td>
+							<td>
+								<a class="btn btn-sm btn-primary" href="/reservation/{{id}}">
+									<i class="bi bi-pencil-square"></i></a>
+							</td>
+						</tr>
+						{{/content.trainings}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	{{ >_footer }}
+<body>
+
+</html>
